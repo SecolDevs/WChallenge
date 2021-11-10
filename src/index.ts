@@ -1,4 +1,4 @@
-import { App } from './app'
+import { App } from './api/app'
 
 const main = async () => {
   const app = new App()
