@@ -1,13 +1,23 @@
-let dbConfig = {
-  type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'test',
-  password: 'test',
-  database: 'test',
-  entities: ['src/entity/*.js'],
-  logging: true,
-  synchronize: true,
+export const dbConfig: any = {
+  development: {
+    type: 'sqlite',
+    database: './dist/database/databases/devDB.db',
+    synchronize: true,
+    logging: false,
+    entities: ['./dist/database/entities/*.js'],
+  },
+  test: {
+    type: 'sqlite',
+    database: './dist/database/databases/testDB.db',
+    synchronize: true,
+    logging: false,
+    entities: ['./dist/database/entities/*.js'],
+  },
+  production: {
+    type: 'sqlite',
+    database: './dist/database/databases/prodDB.db',
+    synchronize: true,
+    logging: false,
+    entities: ['./dist/database/entities/*.js'],
+  },
 }
-
-

@@ -16,3 +16,9 @@ export const getCoinsPrice = async (ids: string[], vs_currencies: string[]) => {
   let data = await coinGeckoClient.simple.price(params)
   return data
 }
+
+export const getCoinById = async (id: string) => {
+  let params = {}
+  let data: any = await coinGeckoClient.coins.fetch(id, params)
+  return data
+}

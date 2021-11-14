@@ -1,8 +1,7 @@
-export class Coins {
-  id: number
+export interface Coin {
   coinId: string
   symbol: string
   name: string
   image: string
-  user_id: number
+  userId: number
 }
