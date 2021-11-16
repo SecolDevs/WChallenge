@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import { Users } from './Users.entity'
 
 @Entity()
 export class Coins {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number
   @Column()
   coinId: string
@@ -13,7 +13,6 @@ export class Coins {
   name: string
   @Column()
   image: string
-  @OneToOne(() => Users)
-  @JoinColumn()
-  user_id: Users
+  @ManyToOne(() => Users, (user) => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  user: number
 }

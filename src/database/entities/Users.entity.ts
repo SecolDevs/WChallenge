@@ -1,4 +1,4 @@
-import { Equals, IsNotEmpty } from 'class-validator'
+import { IsNotEmpty, Matches } from 'class-validator'
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 import { IsUserNameAlreadyExist } from '../customValidators/UserNameExists'
 
@@ -21,6 +21,6 @@ export class Users {
   password: string
   @Column()
   @IsNotEmpty({ message: 'favouriteCurrency is required' })
-  @Equals('ars' || 'eur' || 'usd', { message: 'Only accepts eur, ars or usd' })
+  @Matches(/^(ars|eur|usd)$/, { message: 'Only accepts eur, ars or usd' })
   favouriteCurrency: string
 }

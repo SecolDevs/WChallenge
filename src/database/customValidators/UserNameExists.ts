@@ -8,6 +8,7 @@ import {
 import { getRepository } from 'typeorm'
 import { Users } from '../entities/Users.entity'
 
+/** Custom validator to validate if username already exists */
 @ValidatorConstraint({ async: true })
 export class IsUserNameAlreadyExistConstraint implements ValidatorConstraintInterface {
   validate(userName: any, args: ValidationArguments) {

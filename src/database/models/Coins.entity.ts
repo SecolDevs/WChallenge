@@ -4,5 +4,5 @@ export class Coins {
   symbol: string
   name: string
   image: string
-  user_id: number
+  user: number
 }

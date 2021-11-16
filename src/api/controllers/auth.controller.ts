@@ -1,9 +1,13 @@
 import { Request, Response } from 'express'
-import { createUser, getOneUser } from '../../database/controllers/Users.controller'
+import { validationResult } from 'express-validator'
+import { createUser, findOneUser } from '../../database/controllers/Users.controller'
 import { User } from '../../interface/Users.interface'
 import { comparePassword, generateJWT, generatePassword } from '../config/auth.config'
 
 export const register = async (req: Request, res: Response) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() })
+
   try {
     const { firstName, lastName, userName, password, favouriteCurrency } = req.body
     const newPassword = generatePassword(password)
@@ -12,14 +16,13 @@ export const register = async (req: Request, res: Response) => {
     const createdUser = await createUser(newUser)
     return res.json(createdUser)
   } catch (error) {
-    console.log(error)
-    return res.status(500).json(error)
+    return res.status(400).json(error)
   }
 }
 
 export const login = async (req: Request, res: Response) => {
   const { userName, password } = req.body
-  const findedUser = await getOneUser({ userName })
+  const findedUser = await findOneUser({ userName })
   if (findedUser) {
     if (comparePassword(password, findedUser.password)) {
       const token = generateJWT(findedUser)

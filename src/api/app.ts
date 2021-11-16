@@ -1,10 +1,11 @@
 import express, { Application } from 'express'
 import morgan from 'morgan'
+import cors from 'cors'
 
+import { connectToDB } from '../database/config/connection.config'
 import indexRoutes from './routes/index.routes'
 import coinsRoutes from './routes/coins.routes'
 import authRoutes from './routes/auth.routes'
-import { connectToDB } from '../database/config/connection.config'
 
 export class App {
   private app: Application
@@ -27,6 +28,7 @@ export class App {
   middlewares() {
     this.app.use(morgan(`dev`))
     this.app.use(express.json())
+    this.app.use(cors())
   }
 
   /** Initialize routes */
