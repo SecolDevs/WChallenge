@@ -6,7 +6,7 @@ WChallenge es una API wrapper de CoinGecko que permite crear usuarios, listar to
 
 ## Como Instalar?
 
-Para instalar y comenzar a usar proyecto sigue los siguientes pasos
+Para instalar y comenzar a usar el proyecto sigue los siguientes pasos
 
 1. Clona el repositorio y accede a la carpeta
 2. Corre el comando _npm install_
